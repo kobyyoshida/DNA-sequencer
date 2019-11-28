@@ -1,6 +1,7 @@
 #ifndef STACK_H
 #define STACK_H
 #include <iostream>
+#include "Tree.h"
 using namespace std;
 
 /*
@@ -31,6 +32,10 @@ class Stack {
 		bool isEmpty(); //returns if the stack is empty
 	 	bool isFull(); //returns if the stack is full
 		void growStack();
+		Tree<T> runUndo(Tree<T>* t);
+		Tree<T>* revertToThisTree;
+		void callTraversal(TreeNode<T>* p);
+		TreeNode<T>* transferNode;
 };
 
 template<class T>
@@ -41,6 +46,7 @@ Stack<T>::Stack() //default constructor
   tempArray = new T[5]; //need 1 array for student and 1 for faculty, thats what i think temp array is for?
 	size = 5;
 	top = -1;
+	Tree<T> revertToThisTree = new Tree<T>(); // this is a tree that will be added to when we traverse the tree in the arrayNode
 }
 
 template<class T>
@@ -50,6 +56,7 @@ Stack<T>::Stack(int maxSize)
   tempArray = new T[maxSize];
   size = maxSize;
 	top = -1;
+	Tree<T> revertToThisTree = new Tree<T>(); // this is a tree that will be added to when we traverse the tree in the arrayNode
 }
 
 template<class T>
@@ -57,6 +64,7 @@ Stack<T>::~Stack() //deconstructor
 {
 	delete []myArray;
 	delete []tempArray;
+	delete revertToThisTree;
 }
 
 template<class T>
@@ -135,6 +143,25 @@ void Stack<T>::growStack()
 	{
 		myArray[i] = tempArray[i];
 	}
+}
+
+template<class T>
+Tree<T> Stack<T>::runUndo(){
+	//t.traverse and save every node to a new tree
+	callTraversal(root);
+	return revertToThisTree;
+}
+
+template <class T>
+void Stack<T>::callTraversal(TreeNode<T>* p){
+
+	if(p == NULL){//this will only happen if there are no nodes left to traverse
+		return;
+	}
+	callTraversal(p->left);
+	transferNode = p->key;
+	revertToThisTree.insert(transferNode);
+	callTraversal(p->right);
 }
 
 #endif

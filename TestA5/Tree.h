@@ -26,9 +26,9 @@ class Tree
 
 		TreeNode<T> *getMin();//gets the min key value
 		TreeNode<T> *getMax();//gets the max key value
+		TreeNode<T> *root;
 
 	private:
-		TreeNode<T> *root;
 };
 
 template<class T>

@@ -4,6 +4,7 @@
 #include "Student.h"
 #include "Faculty.h"
 #include "Tree.h"
+#include "Stack.h"
 
 class Simulation
 {
@@ -12,6 +13,7 @@ class Simulation
 		Tree<Faculty> *masterFaculty;
 
 		bool keepGoing;
+		bool lastUpdateToStudent;
 
 	public:
 
@@ -43,7 +45,7 @@ class Simulation
 		bool changeAdvisor(int studID, int newID);//swaping advisors
 		void reassignAdvisee();	//11
 		void removeAdvisee();	//12
-    //void rollBack(); //13
+    void rollBack(); //13
     void loadFiles();
 		void writeFacultyToFile(string file);		//writes faculty tree to file
 		void writeStudentsToFile(string file);		//writes student tree to file
@@ -53,5 +55,8 @@ class Simulation
 		int getInput(string message, int data);
 		string getInput(string message, string data);
 		double getInput(string message, double data);
+
+		Stack<Tree> studentStack;
+		Stack<Tree> facultyStack;
 };
 #endif

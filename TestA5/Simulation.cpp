@@ -1,4 +1,6 @@
 #include "Simulation.h"
+#include "Stack.h"
+#include "Tree.h"
 #include <ctime>
 #include <cstdlib>
 #include <algorithm>
@@ -16,6 +18,8 @@ Simulation::Simulation()
 {
 	masterStudent = new Tree<Student>(); //instaintiating new Trees
 	masterFaculty = new Tree<Faculty>();
+	studentStack = new Stack<Tree>(5);
+	facultyStack = new Stack<Tree>(5);
 
 	keepGoing = true;
   //loadFiles(); //should load the files for new tree
@@ -374,6 +378,7 @@ void Simulation::displayAdvisees()
 //7
 void Simulation::insertStudent()
 {
+	lastUpdateToStudent = true;
 	if(!masterFaculty->isEmpty())
 	{
 		int ID = 0;
@@ -447,6 +452,7 @@ void Simulation::insertStudent()
 //9
 void Simulation::insertFaculty()
 {
+	lastUpdateToStudent = false;
 	int ID = 0;
 	int adviseeID;
 	string name;
@@ -545,6 +551,7 @@ void Simulation::insertFaculty()
 //8
 void Simulation::deleteNodeStudent()
 {
+	lastUpdateToStudent = true;
 	int ID;
 	ID = getInput("Please Enter Student ID: ", ID);
 
@@ -570,6 +577,7 @@ void Simulation::deleteNodeStudent()
 //10
 void Simulation::deleteNodeFaculty(){
   int ID;
+	lastUpdateToStudent = false;
   ID = getInput("Please Enter Faculty ID: ", ID);
   if(masterFaculty->contains(ID))
   {
@@ -678,6 +686,19 @@ void Simulation::removeAdvisee()
 	else
     cout << "An ID entered was incorrect" << endl;
 }
+
+//13
+void Simulation::rollBack(){
+	if(lastUpdateToStudent){//if the last insert/delete update was to the student tree
+		//masterStudent = studentStack[0].runUndo();
+		//call the runUndo on some object here
+	}
+	else if (!lastUpdateToStudent){//the last insert/delete update was done to the faculty tree
+		//masterFaculty = studentStack[0].runUndo();
+		//same as above
+	}
+}
+
 
 int Simulation::generateFacultyID(){//this function should generate a random number between 10000 and 20000, have not tested yet
   int max = 10000;
