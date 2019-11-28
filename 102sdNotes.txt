@@ -1,0 +1,57 @@
+Structural model: Represents the things ideas or concepts contained in the domain of the problem. They also allow the representation of the relationships among the things, ideas or concepts.
+
+Concrete classes: used to create objects
+Abstract classes: do not actually exist but are useful abstractions
+
+Generalization Relationships - the generalization abstraction enables the analyst to create classes that inherit attributes and operations of other classes. Ex - employee is a kind of person
+Aggregation Relationships - generally speaking, relates parts to wholes. ex - a door is a part of the car
+Association Relationships - Other types of relationships that do not fit neatly into a generalization or aggregation framework
+
+Textual analysis - performed by analyst, reviewing the use case diagrams and examining the text in use case descriptions to identify potential objects, attributes, operations and relationships.
+Brainstorming - discovery technique that has been used successfully in identifying candidate classes. A process that a set of ppl sitting around suggest potential classes that could be useful
+Common object list - a list of objects common to the business domain of the system.
+-Incidents - events that occur in the business domain such as meetings flights performances
+-interactions - transaction that takes place in business domain such as a transaction.
+
+Design Patterns:
+ simply a useful group of collaborating classes that provide a solution to a commonly ocurring problem.
+
+How to identify roles exercise:
+1. Review Use Cases - allows the team to pick a specific use case to role play. Choose the hardest one first
+2. Identify Relevant Actors and Objects - The second step is to identify relevant roles to be played. 
+3. Role Play Scenarios - Role play the scenario
+4. Repeat steps 1-3
+
+10/7 Class Diagrams
+
+A class diagram is a static model that shows the classes/relationships among classes that remain constant in the system over time.
+
+Elements of a CD
+
+Class: Main building block. Represents a kind of person place or thing about the system. Has bold typed name at the top.
+	Has a list of attributes in its middle compartment.
+	Has list of operations in its bottom compartment.
+	A public attribute is one that is not hidden from any other object. Objects can modify its value
+	A private attribute is one hidden from all other classes.
+
+Attribute: Represents properties that describe the state of an object. Can be derived from other attributes, shown by placing a slash before the attributes name.
+
+Operations: Represents the actions or functions that a class an perform. Can be classified as a constructor, query or update operation.
+	    Includes parentheses that may contain parameters or info needed to perform the operation
+
+Relationships: 
+Associations: Represents a relationship between multiple classes or a class itself.
+
+Generalization: Represents a kind of relationship between multiple classes
+
+Aggregation: Represents a logical part of relationship between multiple classes or a class and itself. a special form of an association.
+
+How to create class diagrams:
+
+1. Create Use Cases Diagram and Roleplay
+2. Create Class Diagram
+3. Review Class Diagram
+4. Incorporate Patterns
+5. Review the Model
+
+
